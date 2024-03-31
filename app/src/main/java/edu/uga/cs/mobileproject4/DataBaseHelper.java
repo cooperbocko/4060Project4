@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    //Country Strings
+    //SQL Strings
     public static final String COUNTRY_TABLE = "COUNTRY_TABLE";
     public static final String COLUMN_COUNTRY_NAME = "COUNTRY_NAME";
     public static final String COLUMN_COUNTRY_CONTINENT = "COUNTRY_CONTINENT";
@@ -21,11 +21,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String QUIZ_TABLE = "QUIZ_TABLE";
     public static final String COLUMN_QUIZ_SCORE = "QUIZ_SCORE";
     public static final String COLUMN_QUIZ_DATE = "QUIZ_DATE";
+    public static final String ID = "ID";
 
-    //first time
+    //Debug Tag
+    public static final String DEBUG_TAG = "DBHelper";
+
+    //Static Reference to helper
+    private static DataBaseHelper helperInstance;
+
+    //first time constructor
     public DataBaseHelper(@Nullable Context context) {
+
         super(context, "project4.db", null, 1);
     }
+
+    //returning the single source
+    public static synchronized DataBaseHelper getInstance(Context context) {
+        if (helperInstance == null) {
+            helperInstance = new DataBaseHelper(context.getApplicationContext());
+        }
+        return helperInstance;
+    }
+
 
     //creating the tables
     @Override
@@ -34,14 +51,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String createQuizTableStatement = "CREATE TABLE " + QUIZ_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_QUIZ_SCORE + " INT, " + COLUMN_QUIZ_DATE + " TEXT)";
         db.execSQL(createCountryTableStatement);
         db.execSQL(createQuizTableStatement);
+
+        Log.d(DEBUG_TAG, "Tables created");
     }
 
     //version update
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("drop table if exists " + COUNTRY_TABLE);
+        db.execSQL("drop table if exists " + QUIZ_TABLE);
+        onCreate(db);
 
+        Log.d(DEBUG_TAG, "Tables upgraded");
     }
 
+    //keeping this for later reference
+    /*
     //adding a country and a quiz
     public boolean addCountry(CountryModel countryModel){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -123,5 +148,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return list;
     }
+    */
+
 
 }
