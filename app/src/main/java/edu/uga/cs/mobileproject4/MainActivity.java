@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), SliderPageActivity.class);
-            intent.putExtra(RESULTS_BTN, "start");
+            intent.putExtra(START_QUIZ_BTN, "start");
             startActivity(intent);
         }
     }
