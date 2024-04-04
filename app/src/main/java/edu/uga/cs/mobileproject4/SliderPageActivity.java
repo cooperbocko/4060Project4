@@ -22,10 +22,13 @@ public class SliderPageActivity extends FragmentActivity {
     private Data data = null;
     private List<CountryModel> countryModelList;
     //Countries and Continents variables
+    private CountryModel[] countryModels = new CountryModel[5];
     private String[] countries = new String[5];
     private String[] continents = {"Asia", "Africa" , "North America", "South America", "Antarctica", "Europe", "Australia"};
     //Quiz result
     private int result = 0;
+    private String date;
+    private QuizModel quizResult;
     //Pager Variables
     private static final int NUM_PAGES_QUIZ = 6;
     private static final int NUM_PAGES_RESULT = 1;
@@ -33,23 +36,47 @@ public class SliderPageActivity extends FragmentActivity {
     private TextView header;
 
 
-    //Getting the countries async
+    //Getting the countries async and adding them randomly to the countryModelList
     private class CountryDB extends AsyncTask<Void, List<CountryModel>> {
 
         @Override
         protected List<CountryModel> doInBackground(Void... arguments) {
             List<CountryModel> countryList = data.getCountries();
             if (countryList.size() == 0) {
-                
+                data.populateCountries(SliderPageActivity.this);
+                data.getCountries();
             }
             Log.d(DEBUG, "CountryDB: Countries: " + countryList.size());
 
-
-            return null;
+            return countryList;
         }
 
         @Override
         protected void onPostExecute(List<CountryModel> countryModels) {
+            Log.d(DEBUG, "CountryDB: countryModels.size(): " + countryModels.size());
+            //get random countries
+            while (countryModelList.size() < 5) {
+                int rand = (int)(Math.random() * countryModels.size());
+                if (!countryModelList.contains(countryModels.get(rand))){
+                    countryModelList.add(countryModels.get(rand));
+                }
+            }
+            Log.d(DEBUG, "Random Countries added: " + countryModelList.size());
+        }
+    }
+
+    //Adding the quiz result to the DB
+    private class QuizDB extends AsyncTask<QuizModel, QuizModel> {
+
+        @Override
+        protected QuizModel doInBackground(QuizModel... quizModels) {
+            data.addQuiz(quizModels[0]);
+            Log.d(DEBUG, "Quiz added: " + quizModels[0].toString());
+            return quizModels[0];
+        }
+
+        @Override
+        protected void onPostExecute(QuizModel quizModel) {
 
         }
     }
