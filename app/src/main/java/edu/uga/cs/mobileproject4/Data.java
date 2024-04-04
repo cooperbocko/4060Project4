@@ -6,6 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.util.Log;
+
+import com.opencsv.CSVReader;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -164,5 +171,35 @@ public class Data {
         }
 
         return list;
+    }
+
+    public void populateCountries(Context context){
+        //
+        try {
+            InputStream in_s = context.getAssets().open("country_continent.csv");
+            CSVReader reader = new CSVReader( new InputStreamReader(in_s));
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                // nextLine[] is an array of values from the line
+                //country, continent
+
+                ContentValues cv = new ContentValues();
+
+                cv.put(DataBaseHelper.COLUMN_COUNTRY_NAME, nextLine[0]);
+                cv.put(DataBaseHelper.COLUMN_COUNTRY_CONTINENT, nextLine[1]);
+
+                long insert = db.insert(DataBaseHelper.COUNTRY_TABLE, null, cv);
+
+                if (insert == -1) {
+                    Log.d(DEBUG_TAG, "Did NOT add country");
+                } else {
+                    Log.d(DEBUG_TAG, "Did add country");
+                }
+
+                System.out.println(nextLine[0] + " : " + nextLine[1]);
+            }
+        } catch (IOException e) {
+            Log.d(DEBUG_TAG, "CSV reading failure: " + e);
+        }
     }
 }

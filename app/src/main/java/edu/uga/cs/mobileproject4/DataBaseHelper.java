@@ -9,6 +9,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.opencsv.CSVReader;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +57,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(createQuizTableStatement);
 
         Log.d(DEBUG_TAG, "Tables created");
+
+
     }
 
     //version update
