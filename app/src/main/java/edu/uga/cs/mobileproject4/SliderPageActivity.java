@@ -121,7 +121,7 @@ public class SliderPageActivity extends FragmentActivity {
                 return new ResultsFragment();
             }else{
                 //add quizModel to quiz fragment
-                return new QuizFragment();
+                return new QuizFragment(null);
             }
 
         }
