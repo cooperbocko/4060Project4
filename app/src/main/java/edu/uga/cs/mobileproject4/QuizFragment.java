@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,9 +25,9 @@ public class QuizFragment extends Fragment {
     private int questionNumber;
     private TextView question;
 
-    private Spinner continents;
+    private RadioGroup continentsGroup;
 
-    private Button submit;
+    private RadioButton ans1, ans2, ans3, ans4;
 
     public QuizFragment() {
         // Required empty public constructor
@@ -59,8 +61,14 @@ public class QuizFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_quiz, container, false);
 
         question = (TextView) rootView.findViewById(R.id.textView3);
-        continents = (Spinner) rootView.findViewById(R.id.spinner);
-        submit = (Button) rootView.findViewById(R.id.button3);
+        continentsGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+        ans1 = (RadioButton) rootView.findViewById(R.id.radioButton1);
+        ans2 = (RadioButton) rootView.findViewById(R.id.radioButton2);
+        ans3 = (RadioButton) rootView.findViewById(R.id.radioButton3);
+        ans4 = (RadioButton) rootView.findViewById(R.id.radioButton4);
+
+      
+
 
         return rootView;
 
