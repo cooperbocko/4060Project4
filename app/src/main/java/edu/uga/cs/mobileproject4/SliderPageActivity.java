@@ -1,0 +1,92 @@
+package edu.uga.cs.mobileproject4;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
+import android.content.Intent;
+
+import android.os.Bundle;
+import android.widget.TextView;
+
+import java.util.Objects;
+
+public class SliderPageActivity extends FragmentActivity {
+
+
+
+
+
+
+    private static final int NUM_PAGES_QUIZ = 6;
+
+    private static final int NUM_PAGES_RESULT = 1;
+    private TextView header;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_slider_page);
+
+
+        header = findViewById(R.id.textView4);
+        ViewPager2 pageslide = (ViewPager2) findViewById(R.id.viewpager);
+        FragmentStateAdapter pagerAdapter = new ScreenSlidePagerAdapter(this);
+        pageslide.setAdapter(pagerAdapter);
+
+
+        //gets button name from main activity
+        Intent intent = getIntent();
+        String btnPressed = intent.getStringExtra(MainActivity.BTN_TYPE);
+
+
+
+        header.setText(btnPressed);
+
+    }
+
+    private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
+
+
+        //gets button name from main activity
+        Intent intent = getIntent();
+        String btnPressed = intent.getStringExtra(MainActivity.BTN_TYPE);
+        public ScreenSlidePagerAdapter(FragmentActivity fa) {
+            super(fa);
+        }
+
+        @Override
+        public Fragment createFragment(int position) {
+
+
+            if (Objects.equals(btnPressed, "Results")) {
+                return new ResultsFragment();
+            }else{
+                return new QuizFragment();
+            }
+
+        }
+
+
+        @Override
+        public int getItemCount() {
+
+
+            if (Objects.equals(btnPressed, "Results")) {
+                return NUM_PAGES_RESULT;
+            }else{
+                return NUM_PAGES_QUIZ;
+            }
+
+        }
+        }
+    }
+
+
+
+
+

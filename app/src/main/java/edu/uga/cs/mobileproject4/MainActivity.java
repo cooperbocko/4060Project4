@@ -2,36 +2,47 @@ package edu.uga.cs.mobileproject4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.List;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView lv_list;
-    Data data;
+    public static final String BTN_TYPE = "button type";
+
+    private  Button results, startQuiz;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        results = findViewById(R.id.button2);
+        startQuiz = findViewById(R.id.button);
 
-        lv_list = findViewById(R.id.lv_countries);
-        data = new Data(MainActivity.this);
-        data.open();
-        List<CountryModel> countries = data.getCountries();
-        Log.d("main", "size: " + countries.size());
-        if (countries.size() == 0) {
-            Log.d("Main", "countries null");
-            data.populateCountries(MainActivity.this);
-            countries = data.getCountries();
+        results.setOnClickListener((new ButtonClickListenerResults()));
+        startQuiz.setOnClickListener((new ButtonClickListenerQuiz()));
+    }
+
+    private class ButtonClickListenerResults implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+
+            Intent intent = new Intent(view.getContext(), SliderPageActivity.class);
+            intent.putExtra(BTN_TYPE, "Results");
+            startActivity(intent);
         }
-        ArrayAdapter<CountryModel> customerArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, countries);
-        lv_list.setAdapter(customerArrayAdapter);
+    }
+
+    private class ButtonClickListenerQuiz implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), SliderPageActivity.class);
+            intent.putExtra(BTN_TYPE, "Quiz");
+            startActivity(intent);
+        }
 
     }
 }
