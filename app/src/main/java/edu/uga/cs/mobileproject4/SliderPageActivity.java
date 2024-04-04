@@ -22,9 +22,7 @@ public class SliderPageActivity extends FragmentActivity {
     private Data data = null;
     private List<CountryModel> countryModelList;
     //Countries and Continents variables
-    private CountryModel[] countryModels = new CountryModel[5];
-    private String[] countries = new String[5];
-    private String[] continents = {"Asia", "Africa" , "North America", "South America", "Antarctica", "Europe", "Australia"};
+    private CountryModel[] countryModels = new CountryModel[6];
     //Quiz result
     private int result = 0;
     private String date;
@@ -55,7 +53,7 @@ public class SliderPageActivity extends FragmentActivity {
         protected void onPostExecute(List<CountryModel> countryModels) {
             Log.d(DEBUG, "CountryDB: countryModels.size(): " + countryModels.size());
             //get random countries
-            while (countryModelList.size() < 5) {
+            while (countryModelList.size() < 6) {
                 int rand = (int)(Math.random() * countryModels.size());
                 if (!countryModelList.contains(countryModels.get(rand))){
                     countryModelList.add(countryModels.get(rand));
@@ -122,6 +120,7 @@ public class SliderPageActivity extends FragmentActivity {
             if (Objects.equals(btnPressed, "Results")) {
                 return new ResultsFragment();
             }else{
+                //add quizModel to quiz fragment
                 return new QuizFragment();
             }
 

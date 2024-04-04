@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class QuizFragment extends Fragment {
+    private String[] continents = {"Asia", "Africa" , "North America", "South America", "Antarctica", "Europe", "Australia"};
+    private QuizModel quizModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +31,8 @@ public class QuizFragment extends Fragment {
 
     private RadioButton ans1, ans2, ans3, ans4;
 
-    public QuizFragment() {
+    public QuizFragment(QuizModel quiz) {
+        this.quizModel = quiz;
         // Required empty public constructor
     }
 
