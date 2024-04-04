@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/src/main/java/edu/uga/cs/mobileproject4/MainActivity.java

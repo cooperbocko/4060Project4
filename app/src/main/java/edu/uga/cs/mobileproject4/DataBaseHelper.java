@@ -58,32 +58,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         Log.d(DEBUG_TAG, "Tables created");
 
-        //
-        try {
-            CSVReader reader = new CSVReader(new FileReader("country_continent.csv"));
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                // nextLine[] is an array of values from the line
-                //country, continent
 
-                ContentValues cv = new ContentValues();
-
-                cv.put(DataBaseHelper.COLUMN_COUNTRY_NAME, nextLine[0]);
-                cv.put(DataBaseHelper.COLUMN_COUNTRY_CONTINENT, nextLine[1]);
-
-                long insert = db.insert(DataBaseHelper.COUNTRY_TABLE, null, cv);
-
-                if (insert == -1) {
-                    Log.d(DEBUG_TAG, "Did NOT add country");
-                } else {
-                    Log.d(DEBUG_TAG, "Did add country");
-                }
-
-                System.out.println(nextLine[0] + " : " + nextLine[1]);
-            }
-        } catch (IOException e) {
-            Log.d(DEBUG_TAG, "CSV reading failure: " + e);
-        }
     }
 
     //version update

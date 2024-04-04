@@ -3,6 +3,7 @@ package edu.uga.cs.mobileproject4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -23,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
         data = new Data(MainActivity.this);
         data.open();
         List<CountryModel> countries = data.getCountries();
+        Log.d("main", "size: " + countries.size());
+        if (countries.size() == 0) {
+            Log.d("Main", "countries null");
+            data.populateCountries(MainActivity.this);
+            countries = data.getCountries();
+        }
         ArrayAdapter<CountryModel> customerArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, countries);
         lv_list.setAdapter(customerArrayAdapter);
 
