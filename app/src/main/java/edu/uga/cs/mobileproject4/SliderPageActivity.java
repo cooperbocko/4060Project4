@@ -9,21 +9,50 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import java.util.List;
 import java.util.Objects;
 
 public class SliderPageActivity extends FragmentActivity {
-
-
-
-
-
-
+    //Debug
+    private static final String DEBUG = "SliderPageActivity";
+    //DB
+    private Data data = null;
+    private List<CountryModel> countryModelList;
+    //Countries and Continents variables
+    private String[] countries = new String[5];
+    private String[] continents = {"Asia", "Africa" , "North America", "South America", "Antarctica", "Europe", "Australia"};
+    //Quiz result
+    private int result = 0;
+    //Pager Variables
     private static final int NUM_PAGES_QUIZ = 6;
-
     private static final int NUM_PAGES_RESULT = 1;
+    //Views
     private TextView header;
+
+
+    //Getting the countries async
+    private class CountryDB extends AsyncTask<Void, List<CountryModel>> {
+
+        @Override
+        protected List<CountryModel> doInBackground(Void... arguments) {
+            List<CountryModel> countryList = data.getCountries();
+            if (countryList.size() == 0) {
+                
+            }
+            Log.d(DEBUG, "CountryDB: Countries: " + countryList.size());
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<CountryModel> countryModels) {
+
+        }
+    }
 
 
 
