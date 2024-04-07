@@ -25,7 +25,7 @@ public class Question {
     public static void makeQuestions() {
         //arrrays
         questions = new ArrayList<>();
-        answers = new ArrayList<>();
+        questionAnswer = new ArrayList<>();
 
         //make sure countryModels are supplied
         if (countryModels == null) {
@@ -84,7 +84,7 @@ public class Question {
     //don't know if the boolean lists will be reset like this
     public static void reset() {
         countryModels = null;
-        answers = null;
+        questionAnswer = null;
         questions = null;
         results = Arrays.asList(false, false, false, false, false, false).toArray(new Boolean[0]);
         Log.d(DEBUG, "reset results array: " + results.toString());
