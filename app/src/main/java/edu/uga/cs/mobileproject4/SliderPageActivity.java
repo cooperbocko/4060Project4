@@ -71,7 +71,7 @@ public class SliderPageActivity extends FragmentActivity {
                 return new ResultsFragment();
             } else {
                 if (position == 6){
-                    return new EndOfQuizFragment();
+                    return EndOfQuizFragment.newInstance(position);
                 }else {
                     return QuizFragment.newInstance(position);
                 }

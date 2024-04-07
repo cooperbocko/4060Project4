@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -26,6 +27,7 @@ public class EndOfQuizFragment extends Fragment {
     private static final String ARG_QUESTION_NUMBER = "question_number";
     private int questionNumber;
     private TextView tv_result;
+    private Button btn_result;
     private int score;
     private String date;
     private QuizModel quizResult;
@@ -54,10 +56,11 @@ public class EndOfQuizFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_end_of_quiz, container, false);
 
         //get views
-        tv_result = rootView.findViewById(R.id.tv_result);
+        tv_result = (TextView) rootView.findViewById(R.id.tv_result);
+        btn_result = rootView.findViewById(R.id.button3);
 
         //return root
         return rootView;
@@ -89,7 +92,7 @@ public class EndOfQuizFragment extends Fragment {
 
 
         //update textview
-        tv_result.setText("Score:  Date: ");
+        tv_result.setText("Score: " + score +" Date: " + date);
 
         //send result to db
         data = new Data(getActivity());
