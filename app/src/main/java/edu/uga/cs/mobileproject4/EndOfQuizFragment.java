@@ -1,5 +1,6 @@
 package edu.uga.cs.mobileproject4;
 
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
@@ -62,8 +63,20 @@ public class EndOfQuizFragment extends Fragment {
         tv_result = (TextView) rootView.findViewById(R.id.tv_result);
         btn_result = rootView.findViewById(R.id.button3);
 
+        btn_result.setOnClickListener((new ButtonClickListenerHome()));
+
         //return root
         return rootView;
+    }
+
+    private class ButtonClickListenerHome implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+
+            Intent intent = new Intent(view.getContext(), MainActivity.class);
+            startActivity(intent);
+
+        }
     }
 
 
