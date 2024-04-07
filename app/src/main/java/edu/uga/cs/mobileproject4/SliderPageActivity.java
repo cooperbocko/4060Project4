@@ -21,14 +21,6 @@ import java.util.Objects;
 public class SliderPageActivity extends FragmentActivity {
     //Debug
     private static final String DEBUG = "SliderPageActivity";
-    //DB
-    private Data data = null;
-    public List<CountryModel> countryModelList;
-    //Quiz result
-    private int result = 0;
-    private int scores[] = new int[6];
-    private String date;
-    private QuizModel quizResult;
     //Pager Variables
     private static final int NUM_PAGES_QUIZ = 6;
     private static final int NUM_PAGES_RESULT = 1;
