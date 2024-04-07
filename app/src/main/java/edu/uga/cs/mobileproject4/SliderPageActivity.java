@@ -22,7 +22,7 @@ public class SliderPageActivity extends FragmentActivity {
     //Debug
     private static final String DEBUG = "SliderPageActivity";
     //Pager Variables
-    private static final int NUM_PAGES_QUIZ = 6;
+    private static final int NUM_PAGES_QUIZ = 7;
     private static final int NUM_PAGES_RESULT = 1;
     //Views
     private TextView header;
@@ -67,14 +67,14 @@ public class SliderPageActivity extends FragmentActivity {
 
         @Override
         public Fragment createFragment(int position) {
-            if (position == 6) {
-                return EndOfQuizFragment.newInstance(position);
-            }
             if (Objects.equals(btnPressed, "Results")) {
                 return new ResultsFragment();
             } else {
-
-                return QuizFragment.newInstance(position);
+                if (position == 6){
+                    return new EndOfQuizFragment();
+                }else {
+                    return QuizFragment.newInstance(position);
+                }
             }
 
         }

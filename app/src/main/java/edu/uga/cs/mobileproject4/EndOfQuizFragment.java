@@ -2,7 +2,7 @@ package edu.uga.cs.mobileproject4;
 
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.Locale;
 
@@ -49,6 +49,7 @@ public class EndOfQuizFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class EndOfQuizFragment extends Fragment {
         //return root
         return rootView;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -85,8 +87,9 @@ public class EndOfQuizFragment extends Fragment {
         quizResult = new QuizModel(score, date);
         Log.d(DEBUG, "make quiz model: " + quizResult.toString());
 
+
         //update textview
-        tv_result.setText("Score: " + score + " Date: " + date);
+        tv_result.setText("Score:  Date: ");
 
         //send result to db
         data = new Data(getActivity());
