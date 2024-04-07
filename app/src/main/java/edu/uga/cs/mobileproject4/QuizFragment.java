@@ -22,8 +22,6 @@ import java.util.List;
 public class QuizFragment extends Fragment {
     private static final String DEBUG = "Quiz Fragment";
     private static final String ARG_QUESTION_NUMBER = "question_number";
-
-    public static List<CountryModel> cModel;
     private int questionNumber;
     private TextView question;
     private RadioGroup continentsGroup;
