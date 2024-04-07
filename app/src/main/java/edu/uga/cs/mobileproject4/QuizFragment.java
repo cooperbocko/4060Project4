@@ -83,7 +83,7 @@ public class QuizFragment extends Fragment {
 
 
         //setting the text
-        question.setText("What Continent is " + countryQuestion + " in?");
+        question.setText("Which Continent is " + countryQuestion + " in?");
         ans1.setText(answerOne);
         ans2.setText(answerTwo);
         ans3.setText(answerThree);
