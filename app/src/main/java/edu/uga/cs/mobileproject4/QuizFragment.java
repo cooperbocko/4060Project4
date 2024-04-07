@@ -46,9 +46,8 @@ public class QuizFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             questionNumber = getArguments().getInt(ARG_QUESTION_NUMBER);
-        }else {
-            questionNumber = -1;
         }
+
     }
 
     @Override
@@ -57,6 +56,14 @@ public class QuizFragment extends Fragment {
         // Inflate the layout for this fragment
         //views
         View rootView =  inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        question = (TextView) rootView.findViewById(R.id.textView3);
+        continentsGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+        ans1 = (RadioButton) rootView.findViewById(R.id.radioButton1);
+        ans2 = (RadioButton) rootView.findViewById(R.id.radioButton2);
+        ans3 = (RadioButton) rootView.findViewById(R.id.radioButton3);
+        ans4 = (RadioButton) rootView.findViewById(R.id.radioButton4);
+
         return rootView;
 
     }
@@ -66,16 +73,14 @@ public class QuizFragment extends Fragment {
         //public void onActivityCreated(Bundle savedInstanceState) {
         super.onViewCreated( view, savedInstanceState );
 
-        //views
-        question = (TextView) view.findViewById(R.id.textView3);
-        continentsGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
-        ans1 = (RadioButton) view.findViewById(R.id.radioButton1);
-        ans2 = (RadioButton) view.findViewById(R.id.radioButton2);
-        ans3 = (RadioButton) view.findViewById(R.id.radioButton3);
-        ans4 = (RadioButton) view.findViewById(R.id.radioButton4);
-
         //setting the text
-        question.setText(Question.questions.get(0).get(0));
+        question.setText(Question.questions.get(questionNumber).get(0));
+        ans1.setText((Question.questions.get(questionNumber).get(1)));
+        ans2.setText((Question.questions.get(questionNumber).get(2)));
+        ans3.setText((Question.questions.get(questionNumber).get(3)));
+        ans4.setText((Question.questions.get(questionNumber).get(4)));
+
+
 
     }
 
