@@ -47,24 +47,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Adding the quiz result to the DB
-    private class QuizDB extends AsyncTask<QuizModel, QuizModel> {
-
-        @Override
-        protected QuizModel doInBackground(QuizModel... quizModels) {
-            //adding quiz to db
-            data.addQuiz(quizModels[0]);
-            Log.d(DEBUG, "Quiz added: " + quizModels[0].toString());
-            return quizModels[0];
-        }
-
-        @Override
-        protected void onPostExecute(QuizModel quizModel) {
-
-        }
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

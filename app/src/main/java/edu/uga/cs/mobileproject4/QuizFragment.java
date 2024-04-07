@@ -89,5 +89,29 @@ public class QuizFragment extends Fragment {
         ans3.setText(answerThree);
         ans4.setText(answerFour);
 
+        //radiogroup listener
+        continentsGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // This will get the radiobutton that has changed in its check state
+                RadioButton checkedRadioButton = (RadioButton)group.findViewById(checkedId);
+                // This puts the value (true/false) into the variable
+                boolean isChecked = checkedRadioButton.isChecked();
+                // If the radiobutton that has changed in check state is now checked...
+                if (isChecked) {
+                    if (checkedRadioButton.getText().toString().equals(countryAnswer)){
+                        Question.results[questionNumber] = true;
+                        Log.d(DEBUG, "radio button press: correct");
+                    } else {
+                        Question.results[questionNumber] = false;
+                        Log.d(DEBUG, "radio button press: incorrect");
+                    }
+                } else {
+                    Question.results[questionNumber] = false;
+                    Log.d(DEBUG, "radio button press: incorrect");
+                }
+            }
+        });
+
     }
 }

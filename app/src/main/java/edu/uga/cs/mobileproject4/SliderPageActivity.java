@@ -67,6 +67,9 @@ public class SliderPageActivity extends FragmentActivity {
 
         @Override
         public Fragment createFragment(int position) {
+            if (position == 6) {
+                return EndOfQuizFragment.newInstance(position);
+            }
             if (Objects.equals(btnPressed, "Results")) {
                 return new ResultsFragment();
             } else {
