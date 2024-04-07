@@ -13,6 +13,12 @@ public class QuizModel {
         this.date = date;
     }
 
+    public QuizModel(int score, String date) {
+        this.id = -1;
+        this.score = score;
+        this.date = date;
+    }
+
     QuizModel(){}
 
     //getters and setters
