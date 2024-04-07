@@ -74,6 +74,7 @@ public class EndOfQuizFragment extends Fragment {
         public void onClick(View view) {
 
             Intent intent = new Intent(view.getContext(), MainActivity.class);
+            Question.reset();
             startActivity(intent);
 
         }
@@ -86,7 +87,7 @@ public class EndOfQuizFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //get date
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         date = sdf.format(new Date());
         Log.d(DEBUG, "get date: " + date);
 

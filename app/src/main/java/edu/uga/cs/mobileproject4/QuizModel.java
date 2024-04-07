@@ -49,10 +49,6 @@ public class QuizModel {
     //tostring
     @Override
     public String toString() {
-        return "QuizModel{" +
-                "id=" + id +
-                ", score=" + score +
-                ", date='" + date + '\'' +
-                '}';
+        return "Score: " + score + " Date: " + date;
     }
 }
