@@ -22,6 +22,8 @@ import java.util.List;
 public class QuizFragment extends Fragment {
     private static final String DEBUG = "Quiz Fragment";
     private static final String ARG_QUESTION_NUMBER = "question_number";
+
+    public static List<CountryModel> cModel;
     private int questionNumber;
     private TextView question;
     private RadioGroup continentsGroup;
@@ -55,8 +57,9 @@ public class QuizFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //views
-        View rootView =  inflater.inflate(R.layout.fragment_quiz, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
 
+        //call views from xml
         question = (TextView) rootView.findViewById(R.id.textView3);
         continentsGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
         ans1 = (RadioButton) rootView.findViewById(R.id.radioButton1);
@@ -69,20 +72,24 @@ public class QuizFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState ) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         //public void onActivityCreated(Bundle savedInstanceState) {
-        super.onViewCreated( view, savedInstanceState );
+        super.onViewCreated(view, savedInstanceState);
+
+        String countryQuestion = Question.questions.get(questionNumber).get(0);
+        String countryAnswer = Question.questionAnswer.get(questionNumber);
+        String answerOne = Question.questions.get(questionNumber).get(1);
+        String answerTwo = Question.questions.get(questionNumber).get(2);
+        String answerThree = Question.questions.get(questionNumber).get(3);
+        String answerFour = Question.questions.get(questionNumber).get(4);
+
 
         //setting the text
-        question.setText(Question.questions.get(questionNumber).get(0));
-        ans1.setText((Question.questions.get(questionNumber).get(1)));
-        ans2.setText((Question.questions.get(questionNumber).get(2)));
-        ans3.setText((Question.questions.get(questionNumber).get(3)));
-        ans4.setText((Question.questions.get(questionNumber).get(4)));
-
-
+        question.setText("What Continent is " + countryQuestion + " in?");
+        ans1.setText(answerOne);
+        ans2.setText(answerTwo);
+        ans3.setText(answerThree);
+        ans4.setText(answerFour);
 
     }
-
-
 }

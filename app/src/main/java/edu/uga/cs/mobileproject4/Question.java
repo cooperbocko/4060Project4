@@ -10,7 +10,10 @@ public class Question {
     private static final String DEBUG = "Question";
     public static List<String> continents = Arrays.asList("Asia", "Africa" , "North America", "South America", "Antarctica", "Europe", "Australia");
     public static List<CountryModel> countryModels;
+    public static List<String> questionAnswer = new ArrayList<>();
     public static List<List<String>> questions;
+
+
 
     //contructor
     Question(List<CountryModel> x){
@@ -42,8 +45,10 @@ public class Question {
         //make six questions
         for (int i = 0; i < 6; i++) {
             List<String> question = new ArrayList<>();
+
             //insert name first
             question.add(randomcountries.get(i).getName());
+            questionAnswer.add(randomcountries.get(i).getContinent());
             //insert the continents randomly
             List<String> randomcontinents = new ArrayList<>();
             randomcontinents.add(randomcountries.get(i).getContinent());
@@ -63,6 +68,7 @@ public class Question {
                 randomcontinents.remove(rand);
             }
             Log.d(DEBUG, "question: " + question.toString());
+            Log.d(DEBUG, "questionsAnswers: " + questionAnswer.toString());
             questions.add(question);
         }
         Log.d(DEBUG, "questions: " + questions.toString());
