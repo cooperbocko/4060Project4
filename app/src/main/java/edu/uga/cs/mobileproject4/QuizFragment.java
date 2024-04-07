@@ -46,9 +46,8 @@ public class QuizFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             questionNumber = getArguments().getInt(ARG_QUESTION_NUMBER);
-        }else {
-            questionNumber = -1;
         }
+
     }
 
     @Override
@@ -56,28 +55,39 @@ public class QuizFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //views
-        View rootView =  inflater.inflate(R.layout.fragment_quiz, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        //call views from xml
+        question = (TextView) rootView.findViewById(R.id.textView3);
+        continentsGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+        ans1 = (RadioButton) rootView.findViewById(R.id.radioButton1);
+        ans2 = (RadioButton) rootView.findViewById(R.id.radioButton2);
+        ans3 = (RadioButton) rootView.findViewById(R.id.radioButton3);
+        ans4 = (RadioButton) rootView.findViewById(R.id.radioButton4);
+
         return rootView;
 
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState ) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         //public void onActivityCreated(Bundle savedInstanceState) {
-        super.onViewCreated( view, savedInstanceState );
+        super.onViewCreated(view, savedInstanceState);
 
-        //views
-        question = (TextView) view.findViewById(R.id.textView3);
-        continentsGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
-        ans1 = (RadioButton) view.findViewById(R.id.radioButton1);
-        ans2 = (RadioButton) view.findViewById(R.id.radioButton2);
-        ans3 = (RadioButton) view.findViewById(R.id.radioButton3);
-        ans4 = (RadioButton) view.findViewById(R.id.radioButton4);
+        String countryQuestion = Question.questions.get(questionNumber).get(0);
+        String countryAnswer = Question.questionAnswer.get(questionNumber);
+        String answerOne = Question.questions.get(questionNumber).get(1);
+        String answerTwo = Question.questions.get(questionNumber).get(2);
+        String answerThree = Question.questions.get(questionNumber).get(3);
+        String answerFour = Question.questions.get(questionNumber).get(4);
+
 
         //setting the text
-        question.setText(Question.questions.get(0).get(0));
+        question.setText("What Continent is " + countryQuestion + " in?");
+        ans1.setText(answerOne);
+        ans2.setText(answerTwo);
+        ans3.setText(answerThree);
+        ans4.setText(answerFour);
 
     }
-
-
 }
