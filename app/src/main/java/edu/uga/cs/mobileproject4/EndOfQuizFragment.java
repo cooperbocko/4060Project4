@@ -115,6 +115,28 @@ public class EndOfQuizFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //open db
+        if (data != null && !data.isDBOpen()) {
+            data.open();
+            Log.d(DEBUG, "Opening db");
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //close db
+        if (data != null) {
+            data.close();
+            Log.d(DEBUG, "Closing db");
+        }
+    }
+
     //Adding the quiz result to the DB
     private class QuizDB extends AsyncTask<Void, QuizModel> {
 
