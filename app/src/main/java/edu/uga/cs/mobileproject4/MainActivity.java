@@ -86,4 +86,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //open db
+        if (data != null && !data.isDBOpen()) {
+            data.open();
+            Log.d(DEBUG, "Opening db");
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //close db
+        if (data != null) {
+            data.close();
+            Log.d(DEBUG, "Closing db");
+        }
+    }
 }
